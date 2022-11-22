@@ -117,7 +117,7 @@
                       {%- endfor -%}
                     </ul>
                   {% endunless %}
-
+                  
                 {%- when 'price_range' -%}
                   <price-range class="price-range">
                     {%- assign min_value = filter.min_value.value | default: 0.0 | divided_by: 100.0 -%}
