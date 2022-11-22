@@ -1,0 +1,206 @@
+{
+  "current": {
+    "sections": {
+      "navigation": {
+        "type": "navigation",
+        "settings": {
+          "link_text": "Styling Tips",
+          "paragraph_filters_text_3": "Gifts",
+          "link_link": ""
+        }
+      },
+      "landing": {
+        "type": "landing",
+        "settings": {
+          "margin_0_text": "Summer Savings",
+          "heading_xs_text": "<p>Text Area<\/p>",
+          "heading_text": "Summer Savings",
+          "cta_button_text": "",
+          "heading_paragraph": "<p>Celebrate the sunny season with up to 30% off selected<br\/>furniture and accessories.<\/p>",
+          "cta_button_link": "",
+          "cta_button_link_text": "Shop The Sale"
+        }
+      },
+      "featured-categories": {
+        "type": "featured-categories",
+        "blocks": {
+          "f91ec1f7-cb46-45ea-bb54-288a2b1ef779": {
+            "type": "featured_categories",
+            "settings": {
+              "category_name": "Mirrors",
+              "category_image": "shopify:\/\/shop_images\/Mirrors.jpg",
+              "category_link": "shopify:\/\/collections\/mirrors"
+            }
+          },
+          "25f7fc39-e718-4e52-8b14-0612e9b70c8a": {
+            "type": "featured_categories",
+            "settings": {
+              "category_name": "Glassware",
+              "category_image": "shopify:\/\/shop_images\/glassware.jpg",
+              "category_frame": "shopify:\/\/shop_images\/style1.png",
+              "category_link": "shopify:\/\/collections\/glassware"
+            }
+          },
+          "66a610a1-5240-4289-904a-289aa2c7daeb": {
+            "type": "featured_categories",
+            "settings": {
+              "category_name": "Lampshades",
+              "category_image": "shopify:\/\/shop_images\/lamp.jpg",
+              "category_frame": "shopify:\/\/shop_images\/style4.png",
+              "category_link": "shopify:\/\/collections\/lamps"
+            }
+          },
+          "ebceb975-c295-4996-84c9-fa60eb262b46": {
+            "type": "featured_categories",
+            "settings": {
+              "category_name": "Vases",
+              "category_image": "shopify:\/\/shop_images\/vases.jpg",
+              "category_frame": "shopify:\/\/shop_images\/style3.png",
+              "category_link": "shopify:\/\/collections\/vases"
+            }
+          }
+        },
+        "block_order": [
+          "f91ec1f7-cb46-45ea-bb54-288a2b1ef779",
+          "25f7fc39-e718-4e52-8b14-0612e9b70c8a",
+          "66a610a1-5240-4289-904a-289aa2c7daeb",
+          "ebceb975-c295-4996-84c9-fa60eb262b46"
+        ],
+        "settings": {
+          "heading_m_text": "Featured Categories",
+          "featured_categories_heading": "Featured Categories"
+        }
+      },
+      "casa-by-jj-is": {
+        "type": "casa-by-jj-is",
+        "blocks": {
+          "a948a408-5096-44d0-9fe3-e9c34029c7b9": {
+            "type": "what_is_casa",
+            "settings": {
+              "casa_heading": "Empowering<br>Woman",
+              "casa_text": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut"
+            }
+          },
+          "c68c45eb-35f1-4192-ac6f-f5e3278b8974": {
+            "type": "what_is_casa",
+            "settings": {
+              "casa_heading": "Circular<br>\nEconomy",
+              "casa_text": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut",
+              "casa_image": "shopify:\/\/shop_images\/circular.png"
+            }
+          },
+          "a24d0335-c6e4-42e4-818c-4075daca934d": {
+            "type": "what_is_casa",
+            "settings": {
+              "casa_heading": "We Are<br>\nCarbon Neutral",
+              "casa_text": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut",
+              "casa_image": "shopify:\/\/shop_images\/carbon.png"
+            }
+          }
+        },
+        "block_order": [
+          "a948a408-5096-44d0-9fe3-e9c34029c7b9",
+          "c68c45eb-35f1-4192-ac6f-f5e3278b8974",
+          "a24d0335-c6e4-42e4-818c-4075daca934d"
+        ],
+        "settings": {
+          "casa_is_heading": "Casa by JJ is...",
+          "button_text": "Learn About Casa"
+        }
+      },
+      "featured-room": {
+        "type": "featured-room",
+        "blocks": {
+          "cc5cbe89-e3e7-47a3-9c62-99e0ea6b74f3": {
+            "type": "featured_rooms",
+            "settings": {
+              "room_name": "Living Room",
+              "featured_room_link": ""
+            }
+          },
+          "7f11fa3f-8c91-4cfe-98a9-b105ce67600c": {
+            "type": "featured_rooms",
+            "settings": {
+              "room_name": "Kitchen",
+              "room_image": "shopify:\/\/shop_images\/Kitchen.jpg",
+              "featured_room_link": "shopify:\/\/collections\/kitchen"
+            }
+          },
+          "1177bbeb-db2c-486a-9d63-9bb48847a172": {
+            "type": "featured_rooms",
+            "settings": {
+              "room_name": "Bathroom",
+              "room_image": "shopify:\/\/shop_images\/Bathroom.jpg",
+              "featured_room_link": "shopify:\/\/collections\/bathroom"
+            }
+          },
+          "cc1c6f1b-b750-41b5-8544-2fdfb5d53e9c": {
+            "type": "featured_rooms",
+            "settings": {
+              "room_name": "Hallway",
+              "room_image": "shopify:\/\/shop_images\/Hallway.jpg",
+              "featured_room_link": "shopify:\/\/collections\/hallway"
+            }
+          }
+        },
+        "block_order": [
+          "cc5cbe89-e3e7-47a3-9c62-99e0ea6b74f3",
+          "7f11fa3f-8c91-4cfe-98a9-b105ce67600c",
+          "1177bbeb-db2c-486a-9d63-9bb48847a172",
+          "cc1c6f1b-b750-41b5-8544-2fdfb5d53e9c"
+        ],
+        "settings": {
+          "featured_rooms_heading": "Featured Rooms",
+          "view_all_rooms": "",
+          "view_all_rooms_text": "See All Rooms"
+        }
+      },
+      "styling-tips": {
+        "type": "styling-tips",
+        "settings": {
+          "blog_heading": "Styling Tips"
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "link_link": "",
+          "newsletter_cta_heading": "Be the first to know..."
+        }
+      },
+      "gifts-heading": {
+        "type": "gifts-heading",
+        "settings": {
+          "heading_button_text": "Gifts",
+          "heading_paragraph": "<p>A short intro into the category and what<br\/>they could expect to find here<\/p>",
+          "button_link": "",
+          "button_link_text": "See all Products"
+        }
+      },
+      "room-styling-tips": {
+        "type": "room-styling-tips",
+        "settings": {
+          "blog_heading": "Category Styling Tips"
+        }
+      },
+      "tableware-heading": {
+        "type": "tableware-heading",
+        "settings": {
+        }
+      },
+      "home-accessories-heading": {
+        "type": "home-accessories-heading",
+        "settings": {
+          "heading_text": "Heading",
+          "heading_button_text": "See all Products",
+          "heading_paragraph": "",
+          "button_link": "",
+          "button_link_text": "See All Products"
+        }
+      }
+    },
+    "content_for_index": [
+
+    ]
+  }
+}

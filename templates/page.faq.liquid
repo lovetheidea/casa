@@ -1,0 +1,81 @@
+{%- assign headerSnippetPath = "header-index" -%}{%- assign wfPage = "6370473439109ba6befef0a2" -%}{%- assign bodyClasses = "" -%}
+  {%- render 'global-styles' -%}
+  {%- render 'header' -%}
+  {%- section 'navigation' -%}
+  {%- render 'mobile-nav' -%}
+  <div class="page_wrapper margin_40">
+    <div class="content_vertical short">
+      <h1 class="heading_m" data-page-item="title">{{ page.title }}</h1>
+      <p data-page-item="content">{{ page.content }}</p>
+    </div>
+    <div class="section_blog">
+      <div class="page_padding">
+        <div block="FAQ Block" data-w-id="cd90352c-318a-3717-2f84-627450f52eea" class="faq-wrap">
+          <div class="faq-question">
+            <div>
+              <h2 id="what-is-a-webhook" option:text="FAQ Question" class="heading_s">What Is A Webhook?</h2>
+            </div>
+            <div style="-webkit-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0deg) skew(0, 0)" class="arrow w-embed"><svg width="1rem" height="auto" viewBox="0 0 17 11" fill="none" role="button" tabindex="0" aria-labelledby="what-is-a-webhook" alt="" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8.48633 10.4004C8.61003 10.4004 8.72884 10.376 8.84277 10.3271C8.9567 10.2783 9.05599 10.2083 9.14062 10.1172L16.6992 2.37305C16.875 2.19727 16.9629 1.98894 16.9629 1.74805C16.9629 1.57878 16.9238 1.42578 16.8457 1.28906C16.7676 1.15234 16.6618 1.04492 16.5283 0.966797C16.3948 0.888672 16.2435 0.849609 16.0742 0.849609C15.8333 0.849609 15.6218 0.934246 15.4395 1.10352L7.95898 8.75H9.00391L1.52344 1.10352C1.34766 0.934246 1.13607 0.849609 0.888672 0.849609C0.719401 0.849609 0.568034 0.888672 0.43457 0.966797C0.301107 1.04492 0.195313 1.15234 0.117188 1.28906C0.0390627 1.42578 0 1.57878 0 1.74805C0 1.87174 0.0227865 1.9873 0.0683594 2.09473C0.113932 2.20215 0.179037 2.29818 0.263672 2.38281L7.82227 10.1172C8.01758 10.306 8.23893 10.4004 8.48633 10.4004Z" fill="currentcolor"></path>
+              </svg></div>
+          </div>
+          <div style="height:0px" class="faq-answer">
+            <p option:richtext="FAQ Answer">Webhooks are how platforms and applications send information to each other in real time. They are triggered by an event (i.e. form submission), and the data is then sent somewhere (the Destination URL). Our friends at <a href="https://zapier.com/blog/what-are-webhooks/" aria-label="Link To Zapier Blog Post Opens In New Tab" target="_blank" class="faq-link">{{ 'tn60e06fd3' | t }}</a> and <a href="https://blog.n8n.io/webhooks-for-workflow-automation/" aria-label="Link To n8n Blog Post Opens In New Tab" target="_blank" class="faq-link">{{ 't1a424' | t }}</a> further explain how they work, including how to use them with their platforms.</p>
+            <div class="spacer-2"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {%- section 'casa-by-jj-is' -%}
+    <div class="divider alt"></div>
+    {%- section 'styling-tips' -%}
+    {%- section 'footer' -%}
+  </div>
+  <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=633ad4e42c7da0c6cfbbb8ac" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+  <script src="{{ 'webflow.js' | asset_url }}" type="text/javascript"></script>
+  <!-- [if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif] -->
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@latest/bundled/lenis.js"></script>
+  <script>
+   const lenis = new Lenis({
+  duration: 1.2,
+  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4xou
+  direction: 'vertical', // vertical, horizontal
+  gestureDirection: 'vertical', // vertical, horizontal, both
+  smooth: true,
+  smoothTouch: false,
+  touchMultiplier: 2,
+  infinite: false,
+})
+//get scroll value
+lenis.on('scroll', ({ scroll, limit, velocity, direction, progress }) => {
+  console.log({ scroll, limit, velocity, direction, progress })
+})
+function raf(time) {
+  lenis.raf(time)
+  requestAnimationFrame(raf)
+}
+requestAnimationFrame(raf)
+   </script>
+  <!--  CUSTOM QUANTITY BUTTONS  -->
+  <script>
+const quantityGroupClass = "quan-group"
+const quantityIncrementButtonClass = "quan-inc"
+const quantityDecrementButtonClass = "quan-dec"
+const quantityNumberFieldClass = "quan-num"
+// Increment
+$(document).on('click', `.${quantityIncrementButtonClass}`, function(){
+  var $input = $(this).closest(`.${quantityGroupClass}`).find(`.${quantityNumberFieldClass}`);    
+  var val = parseInt($input.val(), 10);
+  $input.val(val + 1);
+  $input[0].dispatchEvent(new Event('change'));
+});
+// Decrement
+$(document).on('click', `.${quantityDecrementButtonClass}`, function(){
+  var $input = $(this).closest(`.${quantityGroupClass}`).find(`.${quantityNumberFieldClass}`);    
+  var val = parseInt($input.val(), 10);
+  $input.val(Math.max(val - 1, 1));
+  $input[0].dispatchEvent(new Event('change'));
+});
+</script>
+
+{{ 'udesly-shopify.min.js' | asset_url | script_tag }}

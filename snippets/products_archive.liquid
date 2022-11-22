@@ -1,0 +1,155 @@
+{% capture listItems %}
+  {% for item in collection.products %}
+    <div role="listitem" class="w-dyn-item wk-col-item" data-product-id="{{ item.id }}">
+      <div id="w-node-eea2b3de-3d6b-842e-acfb-12f818156d13-836c3dc4" class="frame_wrapper">
+        <div id="w-node-eea2b3de-3d6b-842e-acfb-12f818156d14-836c3dc4" class="frame">
+          <img
+            loading="lazy"
+            where="src"
+            src="https://cdn.shopify.com/s/files/1/0675/6358/5823/products/IMG3_3a768aa4-b479-4d6a-a929-15c486dc3629.jpg?v=1667925185"
+            alt="{{ item.featured_image.alt }}"
+            alt=""
+            class="hover"
+          >
+          <img
+            loading="lazy"
+            src="{{ item.featured_image | img_url: 'master' }}"
+            alt="{{ item.featured_image.alt }}"
+            class="frame-fullimage"
+            data-commerce-type="variation-image"
+            srcset="{{ item.featured_image | img_url: '1920x' }} 1920w,{{ item.featured_image | img_url: '1600x' }} 1600w,{{ item.featured_image | img_url: '1366x' }} 1366w,{{ item.featured_image | img_url: '1024x' }} 1024w,{{ item.featured_image | img_url: '768x' }} 768w,{{ item.featured_image | img_url: '640x' }} 640w"
+          >
+          <!-- <a href="#" class="wishlist-addbtn w-inline-block"></a> -->
+        </div>
+        <div class="frame_leftcontent">
+          <a href="{{ item.url | within: collection }}" class="w-inline-block">
+            <p class="paragraph_title">{{ item.title }}</p>
+          </a>
+          <p data-commerce-type="variation-price" class="heading_r line-height_0">{{ item.price | money }}</p>
+          <div>
+            {%- form 'product',
+              item,
+              data-node-type: 'commerce-add-to-cart-form',
+              class: 'w-commerce-commerceaddtocartform'
+            -%}
+              {%- unless item.has_only_default_variant or product.variants.size == 1 -%}
+                <div
+                  data-node-type="add-to-cart-option-list"
+                  id=""
+                  position-id="f5e0b439-22f9-4830-eefe-a005aac32a05"
+                  template-part-bind="f5e0b439-22f9-4830-eefe-a005aac32a05"
+                >
+                  {%- for option in item.options_with_values -%}
+                    <fieldset
+                      data-node-type="add-to-cart-option"
+                      id=""
+                      template-part-bind="f5e0b439-22f9-4830-eefe-a005aac32a06"
+                      style="{% if item.has_only_default_variant or product.variants.size == 1 %}display: none; {% endif %}"
+                    >
+                      <label
+                        data-node-type="add-to-cart-option-label"
+                        id=""
+                        template-part-bind="f5e0b439-22f9-4830-eefe-a005aac32a07"
+                      >
+                        {{- option.name -}}</label
+                      ><select
+                        data-node-type="add-to-cart-option-select"
+                        id=""
+                        template-part-bind="f5e0b439-22f9-4830-eefe-a005aac32a08"
+                        class="w-select"
+                        style="display: none;"
+                        name="{{ "option" | append: forloop.index }}"
+                      >
+                        {%- render 'product-options', option: option -%}
+                      </select>
+                      <div
+                        data-node-type="add-to-cart-option-pill-group"
+                        id=""
+                        template-part-bind="f5e0b439-22f9-4830-eefe-a005aac32a09"
+                        class="w-commerce-commerceaddtocartoptionpillgroup"
+                        aria-label="{{ "option" | append: forloop.index  }}"
+                      >
+                        {%- for value in option.values -%}
+                          <div
+                            data-node-type="add-to-cart-option-pill"
+                            id=""
+                            template-part-bind="f5e0b439-22f9-4830-eefe-a005aac32a0a"
+                            class="w-commerce-commerceaddtocartoptionpill"
+                            data-option-name="{{ value | handle }}"
+                          >
+                            <div data-node-type="block" id="" template-part-bind="f5e0b439-22f9-4830-eefe-a005aac32a0b">
+                              {{ value }}
+                            </div>
+                          </div>
+                        {%- endfor -%}
+                      </div>
+                    </fieldset>
+                  {%- endfor -%}
+                </div>
+              {%- endunless -%}
+              {%- assign condition_value = item.type | strip -%}
+              {%- unless condition_value == 'e348fd487d0102946c9179d2a94bb613' -%}
+                <input
+                  type="number"
+                  pattern="^[0-9]+$"
+                  inputmode="numeric"
+                  id="quantity-275172d45aa3ecb2fdbdd443cc3564c5"
+                  name="quantity"
+                  min="1"
+                  position-id="f5e0b439-22f9-4830-eefe-a005aac32a0e"
+                  class="w-commerce-commerceaddtocartquantityinput hide"
+                  value="1"
+                >
+              {%- endunless -%}
+              <input
+                type="submit"
+                data-loading-text="Adding to cart..."
+                data-node-type="commerce-add-to-cart-button"
+                class="w-commerce-commerceaddtocartbutton button_text"
+                value="Add to Cart"
+                aria-haspopup="dialog"
+                aria-busy="false"
+                position-id="f5e0b439-22f9-4830-eefe-a005aac32a0f"
+              >
+              {%- render 'product-variants-data', product: item -%}
+            {%- endform -%}
+            <div tabindex="0" style="display:none" class="w-commerce-commerceaddtocartoutofstock">
+              <div>This product is out of stock.</div>
+            </div>
+            <div
+              aria-live="assertive"
+              data-node-type="commerce-add-to-cart-error"
+              style="display:none"
+              class="w-commerce-commerceaddtocarterror"
+            >
+              <div
+                data-node-type="commerce-add-to-cart-error"
+                data-w-add-to-cart-quantity-error="Product is not available in this quantity."
+                data-w-add-to-cart-general-error="Something went wrong when adding this item to the cart."
+                data-w-add-to-cart-mixed-cart-error="You can’t purchase another product with a subscription."
+                data-w-add-to-cart-buy-now-error="Something went wrong when trying to purchase this item."
+                data-w-add-to-cart-checkout-disabled-error="Checkout is disabled on this site."
+                data-w-add-to-cart-select-all-options-error="Please select an option in each set."
+              >
+                Product is not available in this quantity.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+{% endcapture %}
+{% assign items_length = listItems | strip | size %}
+<div class="w-dyn-list" udy-collection="product">
+  {%- unless items_length == 0 -%}
+    <div role="list" class="container_3col w-dyn-items">
+      {{ listItems }}
+    </div>
+  {%- endunless -%}
+  {%- if items_length == 0 -%}
+    <div class="w-dyn-empty">
+      <div>No items found.</div>
+    </div>
+  {%- endif -%}
+</div>

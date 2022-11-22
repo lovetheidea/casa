@@ -1,0 +1,74 @@
+
+      <div class="footer_main">
+        <div class="page_padding">
+          <div class="footer_content">
+            <h6 class="heading_m">{{ section.settings.newsletter_cta_heading }}</h6>
+            <div class="newsletter_form w-form">
+              {%- form "contact",  class: "content_vertical short" -%}<input type="email" class="form_field subtle w-input" maxlength="256" name="contact[email]" data-name="Email" placeholder="email address" id="Email-2" required=""><input type="submit" value="Sign Up" data-wait="Please wait..." class="button_line_blue w-button">{%- assign form_success = form.posted_successfully? -%}{%- assign form_errors = form.errors -%}{%- render "form-general-script", form_success: form_success, form_errors: form_errors -%}{%- endform -%}
+              <div class="w-form-done  {% if form_success %}form-posted-successfully{% endif %}">
+                <div>{{ 't5a0ea5a1' | t }}</div>
+              </div>
+              {%- unless form_success -%}<div class="w-form-fail  {% if form.errors %}form-has-errors{% endif %}">
+                <div>{%- render "form-errors", form_errors: form_errors -%}</div>
+              </div>{%- endunless -%}
+            </div>
+            <div class="content_vertical short">
+              <div class="footer_links">
+                <a href="{% if section.settings.link_link %}{{ section.settings.link_link }}{% else %}#{% endif %}">{{ 't4b7aad8' | t }}</a>
+                <a href="{{ pages["tableware"].url }}">{{ 'tfb572b' | t }}</a>
+                <a href="{{ pages["home-accessories"].url }}">{{ 'tn36c02691' | t }}</a>
+                <a href="{{ pages["gifts"].url }}">{{ 't419cd23' | t }}</a>
+                <a href="{{ pages["blogs"].url }}">{{ 't1c5a62a' | t }}</a>
+                <a href="#">{{ 't645efc51' | t }}</a>
+              </div>
+              <div class="footer_links">
+                <a href="{{ routes.account_url }}">{{ 'tn585ec447' | t }}</a>
+                <a href="#">{{ 'tn35e1e61b' | t }}</a>
+                <a href="{{ routes.cart_url }}">{{ 't762ca5e6' | t }}</a>
+                <a href="{{ pages["faq"].url }}">{{ 't3f92ea2' | t }}</a>
+                <a href="#">{{ 'tn5b4dfedd' | t }}</a>
+                <a href="#">{{ 't34ef8014' | t }}</a>
+              </div>
+            </div><img src="https://uploads-ssl.webflow.com/633ad4e42c7da0c6cfbbb8ac/633d4f64e9a8ae91c5cc2978_Logo-Red.svg" loading="lazy" alt="" class="footer_logo">
+          </div>
+        </div>
+      </div>
+      <div class="footer_sub">
+        <div class="page_padding">
+          <div class="footer_wrapper">
+            <div class="paragraph_small text_colour-red">{{ 't74bae159' | t }}<span id="copyrightdate">{{ 't1774fe' | t }}</span>{{ 'tn62814330' | t }}</div>
+            <div class="footer_sub-icons-wrapper"><img src="https://uploads-ssl.webflow.com/633ad4e42c7da0c6cfbbb8ac/633d56975443fd6b636f0f8c_ApplePay-icon.svg" loading="lazy" alt="" class="footer_sub-icons"><img src="https://uploads-ssl.webflow.com/633ad4e42c7da0c6cfbbb8ac/633d5697e9a8ae6bdfcc71a3_Visa-icon.svg" loading="lazy" alt="" class="footer_sub-icons"><img src="https://uploads-ssl.webflow.com/633ad4e42c7da0c6cfbbb8ac/633d5697accedc7bddf462f8_mastercard-icon.svg" loading="lazy" alt="" class="footer_sub-icons"><img src="https://uploads-ssl.webflow.com/633ad4e42c7da0c6cfbbb8ac/633d56978427919c22112723_amex-icon.svg" loading="lazy" alt="" class="footer_sub-icons"><img src="https://uploads-ssl.webflow.com/633ad4e42c7da0c6cfbbb8ac/633d56975443fdce036f0f8b_paypal-icon.svg" loading="lazy" alt="" class="footer_sub-icons"><img src="https://uploads-ssl.webflow.com/633ad4e42c7da0c6cfbbb8ac/633d56979271a9e65f639205_klarna-icon.svg" loading="lazy" alt="" class="footer_sub-icons"></div>
+            <div class="footer_sub-icons-wrapper social">
+              <a href="#" class="w-inline-block"><img src="https://uploads-ssl.webflow.com/633ad4e42c7da0c6cfbbb8ac/633d52ca55a34568c416479e_pinterest.svg" loading="lazy" alt="" class="footer_sub-icons"></a>
+              <a href="#" class="w-inline-block"><img src="https://uploads-ssl.webflow.com/633ad4e42c7da0c6cfbbb8ac/633d52ca543b94d5072f7ca9_youtube.svg" loading="lazy" alt="" class="footer_sub-icons"></a>
+              <a href="#" class="w-inline-block"><img src="https://uploads-ssl.webflow.com/633ad4e42c7da0c6cfbbb8ac/633d52ca0c20e915a89431e1_twitter.svg" loading="lazy" alt="" class="footer_sub-icons"></a>
+              <a href="#" class="w-inline-block"><img src="https://uploads-ssl.webflow.com/633ad4e42c7da0c6cfbbb8ac/633d52ca08f2a94f39341f6c_facebook.svg" loading="lazy" alt="" class="footer_sub-icons"></a>
+              <a href="#" class="w-inline-block"><img src="https://uploads-ssl.webflow.com/633ad4e42c7da0c6cfbbb8ac/633d52cb5294624ec441ca98_instagram.svg" loading="lazy" alt="" class="footer_sub-icons"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+<script>var currentSection = document.currentScript.closest('.shopify-section');currentSection.setAttribute("class","footer");</script>
+        
+{% schema %}
+{
+  "name": "Footer",
+  "tag": "footer",
+  "class": "footer",
+  "settings": [
+    {
+      "id": "link_link",
+      "label": "Link - Link",
+      "type": "url"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_cta_heading",
+      "label": "Newsletter CTA Heading",
+      "default": "Be the first to know..."
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,27 @@
+
+      <div class="page_padding">
+        <div class="content_vertical">
+          <h6 class="heading_m">{{ section.settings.blog_heading }}</h6>
+          {%- render "styling_tips_max_3_sorted_by_published_on_reversed" -%}
+          <a href="{{ pages["blogs"].url }}" class="button_line_blue w-button">{{ 'tn564f3f59' | t }}</a>
+        </div>
+      </div>
+    
+
+<script>var currentSection = document.currentScript.closest('.shopify-section');currentSection.setAttribute("class","section-featured");</script>
+        
+{% schema %}
+{
+  "name": "Styling Tips",
+  "tag": "div",
+  "class": "section-featured",
+  "settings": [
+    {
+      "type": "text",
+      "id": "blog_heading",
+      "label": "Blog Heading",
+      "default": "Styling Tips"
+    }
+  ]
+}
+{% endschema %}

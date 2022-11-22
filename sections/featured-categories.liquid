@@ -1,0 +1,69 @@
+
+      <div class="page_padding">
+        <div class="content_vertical">
+          <h2 class="heading_m">{{ section.settings.featured_categories_heading }}</h2>
+          <div class="container_4col scrollable">
+            {%- for block in section.blocks -%}{%- if block.type == "featured_categories" -%}<div block.shopify_attributes>
+              <a href="{{ block.settings.category_link }}" class="frame_wrapper full-width w-inline-block">
+                <div class="frame arc">{%- if block.settings.category_image == nil -%}<img class="frame-fullimage" src="{{ 'mirrors.jpg' | asset_url }}" alt="" sizes="(max-width: 767px) 60vw, (max-width: 991px) 22vw, 20vw" loading="lazy" srcset="{{ 'mirrors.jpg' | asset_url }} 500w, {{ 'mirrors.jpg' | asset_url }} 800w, {{ 'mirrors.jpg' | asset_url }} 958w">{%- else -%}<img class="frame-fullimage" src="{{ block.settings.category_image.src | img_url: 'master' }}" alt="{{ block.settings.category_image.alt | escape }}" loading="lazy" srcset="{{ block.settings.category_image | img_url: '1920x' }} 1920w,{{ block.settings.category_image | img_url: '1600x' }} 1600w,{{ block.settings.category_image | img_url: '1366x' }} 1366w,{{ block.settings.category_image | img_url: '1024x' }} 1024w,{{ block.settings.category_image | img_url: '768x' }} 768w,{{ block.settings.category_image | img_url: '640x' }} 640w">{%- endif -%}{%- if block.settings.category_frame == nil -%}<img src="{{ 'arc-5.svg' | asset_url }}" loading="lazy" alt="" class="frame_arch">{%- else -%}<img src="{{ block.settings.category_frame.src | img_url: 'master' }}" loading="lazy" alt="{{ block.settings.category_frame.alt | escape }}" class="frame_arch" srcset="{{ block.settings.category_frame | img_url: '1920x' }} 1920w,{{ block.settings.category_frame | img_url: '1600x' }} 1600w,{{ block.settings.category_frame | img_url: '1366x' }} 1366w,{{ block.settings.category_frame | img_url: '1024x' }} 1024w,{{ block.settings.category_frame | img_url: '768x' }} 768w,{{ block.settings.category_frame | img_url: '640x' }} 640w">{%- endif -%}</div>
+                <div class="heading_r">{{ block.settings.category_name }}</div>
+              </a>
+            </div>{%- endif -%}{%- endfor -%}
+          </div>
+          <a href="/collections" class="button_line_red w-button">{{ 't6082e5c8' | t }}</a>
+        </div>
+      </div>
+    
+
+<script>var currentSection = document.currentScript.closest('.shopify-section');currentSection.setAttribute("class","section-featured");</script>
+        
+{% schema %}
+{
+  "name": "Featured Categories",
+  "tag": "section",
+  "class": "section-featured",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading_m_text",
+      "label": "heading_M - Text",
+      "default": "Featured Categories"
+    },
+    {
+      "type": "text",
+      "id": "featured_categories_heading",
+      "label": "Featured Categories Heading",
+      "default": "{{ section.settings.heading_m_text }}"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Featured Categories",
+      "type": "featured_categories",
+      "settings": [
+        {
+          "type": "text",
+          "id": "category_name",
+          "label": "Category Name",
+          "default": "Mirrors"
+        },
+        {
+          "type": "image_picker",
+          "id": "category_image",
+          "label": "Category Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "category_frame",
+          "label": "Category Frame"
+        },
+        {
+          "type": "url",
+          "id": "category_link",
+          "label": "Category Link"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

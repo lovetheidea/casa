@@ -1,0 +1,69 @@
+
+      <div class="page_padding">
+        <div class="content_vertical">
+          <h6 class="heading_m">{{ section.settings.featured_rooms_heading }}</h6>
+          <div class="container_4col scrollable">
+            {%- for block in section.blocks -%}{%- if block.type == "featured_rooms" -%}<div block.shopify_attributes>
+              <a href="{{ block.settings.featured_room_link }}" class="frame_wrapper full-width w-inline-block">
+                <div id="w-node-d9f22685-bb70-768a-3661-1396e2ba48b3-e2ba48ab" class="frame arc">{%- if block.settings.room_image == nil -%}<img src="https://uploads-ssl.webflow.com/633ad4e42c7da0c6cfbbb8ac/633c4300be56536ec7fa2d85_LivingRoom-Header.jpg" loading="lazy" alt="" class="frame-fullimage">{%- else -%}<img src="{{ block.settings.room_image.src | img_url: 'master' }}" loading="lazy" alt="{{ block.settings.room_image.alt | escape }}" class="frame-fullimage" srcset="{{ block.settings.room_image | img_url: '1920x' }} 1920w,{{ block.settings.room_image | img_url: '1600x' }} 1600w,{{ block.settings.room_image | img_url: '1366x' }} 1366w,{{ block.settings.room_image | img_url: '1024x' }} 1024w,{{ block.settings.room_image | img_url: '768x' }} 768w,{{ block.settings.room_image | img_url: '640x' }} 640w">{%- endif -%}</div>
+                <p class="heading_r">{{ block.settings.room_name }}</p>
+              </a>
+            </div>{%- endif -%}{%- endfor -%}
+          </div>
+          <a href="{{ section.settings.view_all_rooms }}" class="button_line_blue w-button">{{ section.settings.view_all_rooms_text }}</a>
+        </div>
+      </div>
+    
+
+<script>var currentSection = document.currentScript.closest('.shopify-section');currentSection.setAttribute("class","section-featured");</script>
+        
+{% schema %}
+{
+  "name": "Featured Room",
+  "tag": "div",
+  "class": "section-featured",
+  "settings": [
+    {
+      "type": "text",
+      "id": "featured_rooms_heading",
+      "label": "Featured Rooms Heading",
+      "default": "Featured Rooms"
+    },
+    {
+      "type": "url",
+      "id": "view_all_rooms",
+      "label": "View all Rooms"
+    },
+    {
+      "type": "text",
+      "id": "view_all_rooms_text",
+      "label": "View all Rooms Text",
+      "default": "See All Rooms"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Featured Rooms",
+      "type": "featured_rooms",
+      "settings": [
+        {
+          "type": "text",
+          "id": "room_name",
+          "label": "Room Name",
+          "default": "Living Room"
+        },
+        {
+          "type": "image_picker",
+          "id": "room_image",
+          "label": "Room Image"
+        },
+        {
+          "type": "url",
+          "id": "featured_room_link",
+          "label": "Featured Room Link"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

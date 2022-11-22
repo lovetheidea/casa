@@ -1,0 +1,22 @@
+
+            <h1 class="heading_m">{{ 'tn224d7f59' | t }}</h1>
+            <p class="text_align-center">{{ section.settings.login_message }}</p>
+          
+
+<script>var currentSection = document.currentScript.closest('.shopify-section');currentSection.setAttribute("class","content_vertical short");</script>
+        
+{% schema %}
+{
+  "name": "Login",
+  "tag": "div",
+  "class": "content_vertical short",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "login_message",
+      "label": "Login Message",
+      "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lobortis ut morbi odio mauris. Nibh viverra at vel phasellus faucibus amet nisl."
+    }
+  ]
+}
+{% endschema %}

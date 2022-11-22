@@ -1,0 +1,22 @@
+
+            <h1 class="heading_m">{{ 'tn5082f162' | t }}</h1>
+            <p class="text_align-center">{{ section.settings.register_message }}</p>
+          
+
+<script>var currentSection = document.currentScript.closest('.shopify-section');currentSection.setAttribute("class","content_vertical short");</script>
+        
+{% schema %}
+{
+  "name": "sign up",
+  "tag": "div",
+  "class": "content_vertical short",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "register_message",
+      "label": "Register Message",
+      "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lobortis ut morbi odio mauris. Nibhviverra at vel phasellus faucibus amet nisl."
+    }
+  ]
+}
+{% endschema %}

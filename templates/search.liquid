@@ -1,0 +1,337 @@
+{%- assign headerSnippetPath = 'header-index' -%}
+{%- assign wfPage = '636e30d70d7d56f7f46c3ddb' -%}
+{%- assign bodyClasses = '' -%}
+<div class="container w-container">
+  <h1>{{ 't7e85e19e' | t }}</h1>
+  {% comment %} <form action="/search" class="w-form" method="get" role="search">
+    <label for="search">{{ 'tn6ca0ae38' | t }}</label
+    ><input
+      type="search"
+      class="w-input"
+      maxlength="256"
+      name="q"
+      placeholder="Search…"
+      id="search"
+      required="">
+      <input type="submit" value="Search" class="w-button">
+  </form>
+  {%- if search.performed -%}
+    <div data-node-type="search-result-wrapper" id="">
+      {%- if search.results_count > 0 -%}
+        <div data-node-type="search-result-list" id="">
+          {%- for item in search.results -%}
+            <div data-node-type="search-result-item" id="">
+              <a data-node-type="link" id="" href="{{ item.url }}">{{ item.title }}</a>
+              <div data-node-type="block" id="">{{ item.url }}</div>
+              <p data-node-type="paragraph" id="">{{ item.content | highlight: search.terms }}</p>
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+      {%- if search.results_count == 0 -%}
+        <div data-node-type="search-result-empty" id="">
+          <div data-node-type="block" id="">{{ 'tn75764c4' | t }}</div>
+        </div>
+      {%- endif -%}
+    </div>
+  {%- endif -%} {% endcomment %}
+</div>
+{%- render 'global-styles' -%}
+{%- render 'header' -%}
+{%- section 'navigation' -%}
+
+<div class="page_wrapper margin_40">
+  <div class="page_padding">
+    <h1>{{ 't7e85e19e' | t }}</h1>
+    <div class="content_horizontal">
+      <div class="product-list_filters">
+        <form class="filter-form">
+          {%- for filter in search.filters -%}
+            {%- for filter_value in filter.active_values -%}
+              {%- if filter.active_values.size > 0 -%}
+                {% assign active_filters = true %}
+              {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
+          {% if active_filters %}
+            <div class="active_f_header">
+              <p class="heading_r" style="margin-bottom:0.5rem">Selected</p>
+            </div>
+            <div class="active_f_wrap">
+              {%- for filter in search.filters -%}
+                {%- for filter_value in filter.active_values -%}
+                  {%- if filter.active_values.size > 0 -%}
+                    <div class="active_f">
+                      <a href="{{ filter_value.url_to_remove }}" data-action="clear-filters" class="f_item_clear" aria-label="delete">
+                        {{- filter_value.label -}}
+                        <svg focusable="false" width="12" height="12" class="icon_close" viewBox="0 0 14 14">
+                          <path d="M13 13L1 1M13 1L1 13" stroke="currentColor" stroke-width="1.6" fill="none"></path>
+                        </svg>
+                      </a>
+                    </div>
+                  {% endif %}
+                {%- endfor -%}
+              {%- endfor -%}
+            </div><br>
+          {% endif %}
+
+          {%- for filter in search.filters -%}
+            <div class="f_group {% if filter.label == 'Colour' %}colour_group{% endif %}">
+              <div class="heading_r" style="margin-bottom: 8px;">
+                {{ filter.label }}{%- if filter.active_values.size > 0 -%} ({{ filter.active_values.size }}){%- endif -%}
+              </div>
+
+              {%- case filter.type -%}
+                {%- when 'boolean' or 'list' -%}
+                  {% unless filter.label == 'Colour' %}
+                    <ul class="f_item_list">
+                      {%- for filter_value in filter.values -%}
+                        <li class="filter-group-display__list-item">
+                          <label class="f_wrap" for="Filter-{{ filter.param_name }}-{{ forloop.index }}">
+                            <input class="filter-checkbox" type="checkbox" name="{{ filter_value.param_name }}" value="{{ filter_value.value }}"
+                              id="Filter-{{ filter.param_name }}-{{ forloop.index }}" {% if filter_value.active -%}checked{%- endif %}
+                              {% if filter_value.count == 0 and filter_value.active == false -%}disabled{%- endif %}>{{ filter_value.label }}</label>
+                        </li>
+                      {%- endfor -%}
+                    </ul>
+
+                    <div class="filter-group-display__submit">
+                      <input class="button_text text_colour-red" style="  border: 0; margin-bottom: 1rem;cursor: pointer; font-size:1rem;" type="submit" value="Apply">
+                    </div>
+                  {% else %}
+                    {% comment %} Colour filters {% endcomment %}
+                    <ul class="f_colour_list">
+                      {%- for filter_value in filter.values -%}
+                        <li>
+                          <label class="f_wrap colour_wrap" for="Filter-{{ filter.param_name }}-{{ forloop.index }}">
+                            <input class="filter-checkbox colour_checkbox" type="checkbox" 
+                                  name="{{ filter_value.param_name }}" 
+                                  value="{{ filter_value.value }}"
+                                  id="Filter-{{ filter.param_name }}-{{ forloop.index }}" 
+                                  style="background-color: {{ filter_value.label | downcase }};"
+                                  {% if filter_value.active -%}checked{%- endif %}
+                                  {% if filter_value.count == 0 and filter_value.active == false -%}disabled{%- endif %}
+                              ><span class="colour_tooltip">{{ filter_value.label }}</span>
+                          </label>
+                        </li>
+                      {%- endfor -%}
+                    </ul>
+                  {% endunless %}
+
+                {%- when 'price_range' -%}
+                  <price-range class="price-range">
+                    {%- assign min_value = filter.min_value.value | default: 0.0 | divided_by: 100.0 -%}
+                    {%- assign max_value = filter.max_value.value | default: filter.range_max | divided_by: 100.0 -%}
+                    {%- assign range_max = filter.range_max | divided_by: 100.0 | ceil -%}
+                    {% assign lower_bound_progress = min_value | divided_by: range_max | times: 100.0 %}
+                    {% assign higher_bound_progress = max_value | divided_by: range_max | times: 100.0 %}
+
+                    <div class="price-range__input-group">
+                      <div class="price-range__input input-prefix">
+                        <span class="input-prefix__value">{{ cart.currency.symbol }}</span>
+                        <input aria-label="From price" class="input-prefix__field" type="number" inputmode="numeric" {% if filter.min_value.value %}value="{{ min_value | ceil }}"{% endif %} name="{{ filter.min_value.param_name }}" id="{{ filter.min_value.param_name }}" min="0" max="{{ max_value | ceil }}" placeholder="0">
+                      </div>
+                      <div class="price-range__input input-prefix">
+                        <span class="input-prefix__value">{{ cart.currency.symbol }}</span>
+                        <input aria-label="To price" class="input-prefix__field" type="number" inputmode="numeric" {% if filter.max_value.value %}value="{{ max_value | ceil }}"{% endif %} name="{{ filter.max_value.param_name }}" id="{{ filter.max_value.param_name }}" min="{{ min_value | ceil }}" max="{{ range_max | ceil }}" placeholder="{{ range_max | ceil }}">
+                      </div>
+                    </div>
+
+                    <div class="price-range__range-group range-group" style="--range-min: {{ lower_bound_progress }}%; --range-max: {{ higher_bound_progress }}%">
+                      <input type="range" aria-label="From price" class="range" min="0" max="{{ range_max | ceil }}" value="{{ min_value | ceil }}">
+                      <input type="range" aria-label="To price" class="range" min="0" max="{{ range_max | ceil }}" value="{{ max_value | ceil }}">
+                    </div>
+                  </price-range>
+
+                  <script>
+                    var PriceRange = class extends HTMLElement {
+                      connectedCallback() {
+                        this.rangeLowerBound = this.querySelector(".price-range__range-group input:first-child");
+                        this.rangeHigherBound = this.querySelector(".price-range__range-group input:last-child");
+                        this.textInputLowerBound = this.querySelector(".price-range__input:first-child input");
+                        this.textInputHigherBound = this.querySelector(".price-range__input:last-child input");
+                        this.textInputLowerBound.addEventListener("focus", () => this.textInputLowerBound.select());
+                        this.textInputHigherBound.addEventListener("focus", () => this.textInputHigherBound.select());
+                        this.textInputLowerBound.addEventListener("change", (event) => {
+                          event.target.value = Math.max(Math.min(parseInt(event.target.value), parseInt(this.textInputHigherBound.value || event.target.max) - 1), event.target.min);
+                          this.rangeLowerBound.value = event.target.value;
+                          this.rangeLowerBound.parentElement.style.setProperty("--range-min", `${parseInt(this.rangeLowerBound.value) / parseInt(this.rangeLowerBound.max) * 100}%`);
+                        });
+                        this.textInputHigherBound.addEventListener("change", (event) => {
+                          event.target.value = Math.min(Math.max(parseInt(event.target.value), parseInt(this.textInputLowerBound.value || event.target.min) + 1), event.target.max);
+                          this.rangeHigherBound.value = event.target.value;
+                          this.rangeHigherBound.parentElement.style.setProperty("--range-max", `${parseInt(this.rangeHigherBound.value) / parseInt(this.rangeHigherBound.max) * 100}%`);
+                        });
+                        this.rangeLowerBound.addEventListener("change", (event) => {
+                          this.textInputLowerBound.value = event.target.value;
+                          this.textInputLowerBound.dispatchEvent(new Event("change", { bubbles: true }));
+                        });
+                        this.rangeHigherBound.addEventListener("change", (event) => {
+                          this.textInputHigherBound.value = event.target.value;
+                          this.textInputHigherBound.dispatchEvent(new Event("change", { bubbles: true }));
+                        });
+                        this.rangeLowerBound.addEventListener("input", (event) => {
+                          triggerEvent(this, "facet:abort-loading");
+                          event.target.value = Math.min(parseInt(event.target.value), parseInt(this.textInputHigherBound.value || event.target.max) - 1);
+                          event.target.parentElement.style.setProperty("--range-min", `${parseInt(event.target.value) / parseInt(event.target.max) * 100}%`);
+                          this.textInputLowerBound.value = event.target.value;
+                        });
+                        this.rangeHigherBound.addEventListener("input", (event) => {
+                          triggerEvent(this, "facet:abort-loading");
+                          event.target.value = Math.max(parseInt(event.target.value), parseInt(this.textInputLowerBound.value || event.target.min) + 1);
+                          event.target.parentElement.style.setProperty("--range-max", `${parseInt(event.target.value) / parseInt(event.target.max) * 100}%`);
+                          this.textInputHigherBound.value = event.target.value;
+                        });
+                      }
+                    };
+                    window.customElements.define("price-range", PriceRange);
+                  </script>
+              {%- endcase -%}
+            </div>
+          {%- endfor -%}
+        </form>
+      </div>
+
+      <div class="product-list_products">
+        <div class="container_3col margin_30">
+          {% comment %} {%- for product in search.results -%}
+            {%- render 'products_archive', product: item -%}
+          {%- endfor -%} {% endcomment %}
+
+          {% comment %} {% for item in search.results %}
+            {% if item.object_type == 'product' %}
+              <div class="product-list_products">
+              </div>
+            {% else %}
+            {% endif %}
+
+            {% comment %} <div>
+              <!-- Result {{ forloop.index }} -->
+              <div class="frame_wrapper">
+                <div class="frame">
+                  {%- if item.featured_image -%}
+                    <div class="frame-fullimage">
+                      <a href="{{ item.url }}" title="{{ item.title | escape }}">
+                        <img
+                          loading="lazy"
+                          src="{{ item.featured_image | img_url: 'master' }}"
+                          alt="{{ item.featured_image.alt }}"
+                          class="frame-fullimage"
+                          data-commerce-type="variation-image"
+                          srcset="{{ item.featured_image | img_url: '1920x' }} 1920w,{{ item.featured_image | img_url: '1600x' }} 1600w,{{ item.featured_image | img_url: '1366x' }} 1366w,{{ item.featured_image | img_url: '1024x' }} 1024w,{{ item.featured_image | img_url: '768x' }} 768w,{{ item.featured_image | img_url: '640x' }} 640w"
+                        >
+                      </a>
+                    </div>
+                  {% endif %}
+                </div>
+
+                <div class="frame_leftcontent">
+                  <p class="paragraph_title">
+                    {{ item.title | link_to: item.url }}
+                  </p>
+
+                  <h4 class="heading_R line-height_0">
+                    {{ item.price | money }}
+                  </h4>
+                </div>
+              </div>
+            </div> {% endcomment %}
+          {% endfor %} {% endcomment %}
+
+          {%- if search.performed -%}
+            {%- for item in search.results -%}
+              {% if search.results_count > 0 or search.filters != empty %}
+                {% if item.object_type == 'product' %}
+                  <div class="frame_wrapper">
+                    <div class="frame">
+                      {%- if item.featured_image -%}
+                        <div class="frame-fullimage">
+                          <a href="{{ item.url }}" title="{{ item.title | escape }}">
+                            <img
+                              loading="lazy"
+                              src="{{ item.featured_image | img_url: 'master' }}"
+                              alt="{{ item.featured_image.alt }}"
+                              class="frame-fullimage"
+                              data-commerce-type="variation-image"
+                              srcset="{{ item.featured_image | img_url: '1920x' }} 1920w,{{ item.featured_image | img_url: '1600x' }} 1600w,{{ item.featured_image | img_url: '1366x' }} 1366w,{{ item.featured_image | img_url: '1024x' }} 1024w,{{ item.featured_image | img_url: '768x' }} 768w,{{ item.featured_image | img_url: '640x' }} 640w"
+                            >
+                          </a>
+                        </div>
+                      {% endif %}
+                    </div>
+      
+                    <div class="frame_leftcontent">
+                      <p class="paragraph_title">
+                        {{ item.title | link_to: item.url }}
+                      </p>
+      
+                      <h4 class="heading_R line-height_0">
+                        {{ item.price | money }}
+                      </h4>
+                    </div>
+                  </div>
+                {% endif %}
+              {% endif %}
+            {%- endfor -%}
+          {%- endif -%}
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script
+  src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=633ad4e42c7da0c6cfbbb8ac"
+  type="text/javascript"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"
+></script>
+<script src="{{ 'webflow.js' | asset_url }}" type="text/javascript"></script>
+<!--
+  [if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]
+-->
+<script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@latest/bundled/lenis.js"></script>
+<script>
+  const lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4xou
+    direction: 'vertical', // vertical, horizontal
+    gestureDirection: 'vertical', // vertical, horizontal, both
+    smooth: true,
+    smoothTouch: false,
+    touchMultiplier: 2,
+    infinite: false,
+  });
+  //get scroll value
+  lenis.on('scroll', ({ scroll, limit, velocity, direction, progress }) => {
+    console.log({ scroll, limit, velocity, direction, progress });
+  });
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+</script>
+<!-- CUSTOM QUANTITY BUTTONS -->
+<script>
+  const quantityGroupClass = 'quan-group';
+  const quantityIncrementButtonClass = 'quan-inc';
+  const quantityDecrementButtonClass = 'quan-dec';
+  const quantityNumberFieldClass = 'quan-num';
+  // Increment
+  $(document).on('click', `.${quantityIncrementButtonClass}`, function () {
+    var $input = $(this).closest(`.${quantityGroupClass}`).find(`.${quantityNumberFieldClass}`);
+    var val = parseInt($input.val(), 10);
+    $input.val(val + 1);
+    $input[0].dispatchEvent(new Event('change'));
+  });
+  // Decrement
+  $(document).on('click', `.${quantityDecrementButtonClass}`, function () {
+    var $input = $(this).closest(`.${quantityGroupClass}`).find(`.${quantityNumberFieldClass}`);
+    var val = parseInt($input.val(), 10);
+    $input.val(Math.max(val - 1, 1));
+    $input[0].dispatchEvent(new Event('change'));
+  });
+</script>
+
+{{ 'udesly-shopify.min.js' | asset_url | script_tag }}

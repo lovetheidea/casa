@@ -1,0 +1,24 @@
+{% capture listItems %}
+
+{%- assign allItems = collections -%}
+{%- for item in allItems -%}{% assign condition_0 = false %}                  
+                {% if item.metafields.udesly['collection-type'] == "Room" %}
+                    {% assign condition_0 = true %}
+                {% endif %}{% if condition_0 %}
+ <div role="listitem" class="w-dyn-item">
+                          <a id="w-node-_1af77963-baa1-4a85-bcd6-03525a57ba3c-5a57ba28" href="{{ item.url }}" class="paragraph_filters">{{ item.title }}</a>
+                        </div>
+{% endif %}
+{%- endfor -%}
+
+{% endcapture %}
+{% assign items_length = listItems | strip | size %}
+
+<div class="collection-list-wrapper w-dyn-list" udy-collection="collection">
+                      {%- unless items_length == 0 -%}<div role="list" class="nav_dropdown-menu_content-link-wrapper w-dyn-items">
+                        {{ listItems }}
+                      </div>{%- endunless -%}
+                      {%- if items_length == 0 -%}<div class="w-dyn-empty">
+                        <div>No items found.</div>
+                      </div>{%- endif -%}
+                    </div>

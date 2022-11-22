@@ -1,0 +1,27 @@
+{% capture listItems %}
+
+{%- assign allItems = collections -%}{%- assign allItems = allItems | sort: 'title' -%}
+{%- for item in allItems -%}{% assign condition_0 = false %}                  
+                {% if item.metafields.udesly['collection-type'] == "Tableware" %}
+                    {% assign condition_0 = true %}
+                {% endif %}{% if condition_0 %}
+ <div role="listitem" class="w-dyn-item">
+              <a option:url="Category Link" href="{{ item.url }}" class="frame_wrapper full-width w-inline-block">
+                <div class="frame arc"><img loading="lazy" object:image="Category Image" src="{{ item.image | img_url: 'master' }}" alt="{{ item.image.alt }}" class="frame-fullimage" srcset="{{ item.image | img_url: '1920x' }} 1920w,{{ item.image | img_url: '1600x' }} 1600w,{{ item.image | img_url: '1366x' }} 1366w,{{ item.image | img_url: '1024x' }} 1024w,{{ item.image | img_url: '768x' }} 768w,{{ item.image | img_url: '640x' }} 640w"> <img src="{{ 'arc-5.svg' | asset_url }}" loading="lazy" alt="" class="frame_arch"></div>
+                <div object:text="Category Name" class="heading_r">{{ item.title }}</div>
+              </a>
+            </div>
+{% endif %}
+{%- endfor -%}
+
+{% endcapture %}
+{% assign items_length = listItems | strip | size %}
+
+<div class="margin_40 w-dyn-list" udy-collection="collection">
+          {%- unless items_length == 0 -%}<div role="list" class="container_4col w-dyn-items">
+            {{ listItems }}
+          </div>{%- endunless -%}
+          {%- if items_length == 0 -%}<div class="w-dyn-empty">
+            <div>No items found.</div>
+          </div>{%- endif -%}
+        </div>

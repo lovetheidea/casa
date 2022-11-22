@@ -1,0 +1,57 @@
+
+      <div class="page_padding">
+        <div class="category_container">
+          <div class="container_section image">{%- if section.settings.landing_image == nil -%}<img src="https://uploads-ssl.webflow.com/633ad4e42c7da0c6cfbbb8ac/633c0cbb6518b6d57511d591_room-header.jpg" loading="lazy" alt="" class="frame-fullimage">{%- else -%}<img src="{{ section.settings.landing_image.src | img_url: 'master' }}" loading="lazy" alt="{{ section.settings.landing_image.alt | escape }}" class="frame-fullimage" srcset="{{ section.settings.landing_image | img_url: '1920x' }} 1920w,{{ section.settings.landing_image | img_url: '1600x' }} 1600w,{{ section.settings.landing_image | img_url: '1366x' }} 1366w,{{ section.settings.landing_image | img_url: '1024x' }} 1024w,{{ section.settings.landing_image | img_url: '768x' }} 768w,{{ section.settings.landing_image | img_url: '640x' }} 640w">{%- endif -%}</div>
+          <div class="container_section">
+            <h1 class="margin_0">Home Accessories</h1>
+            <div class="heading_xs text_colour-red"> A short intro into the category and what<br>they could expect to find here </div>
+            <a href="{{ section.settings.button_link }}" class="button_line_blue w-button">{{ section.settings.button_link_text }}</a>
+          </div>
+        </div>
+      </div>
+    
+
+<script>var currentSection = document.currentScript.closest('.shopify-section');currentSection.setAttribute("class","section_category_landing");</script>
+        
+{% schema %}
+{
+  "name": "Home Accessories Heading",
+  "tag": "section",
+  "class": "section_category_landing",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading_text",
+      "label": "Heading Text",
+      "default": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "heading_button_text",
+      "label": "Heading Button Text",
+      "default": "See all Products"
+    },
+    {
+      "type": "richtext",
+      "id": "heading_paragraph",
+      "label": "Heading Paragraph"
+    },
+    {
+      "type": "image_picker",
+      "id": "landing_image",
+      "label": "Landing Image"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "text",
+      "id": "button_link_text",
+      "label": "Button Link Text",
+      "default": "{{ section.settings.heading_button_text }}"
+    }
+  ]
+}
+{% endschema %}

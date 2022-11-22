@@ -1,0 +1,27 @@
+{% capture listItems %}
+
+{%- assign allItems = blogs['styling-tips'].articles -%}
+{%- for item in allItems limit: 3 -%}
+ <div role="listitem" class="w-dyn-item">
+                  <div class="related_wrapper">
+                    <div class="content_horizontal align-center"><img loading="lazy" src="{{ item.image | img_url: 'master' }}" alt="{{ item.image.alt }}" class="blog_image" srcset="{{ item.image | img_url: '1920x' }} 1920w,{{ item.image | img_url: '1600x' }} 1600w,{{ item.image | img_url: '1366x' }} 1366w,{{ item.image | img_url: '1024x' }} 1024w,{{ item.image | img_url: '768x' }} 768w,{{ item.image | img_url: '640x' }} 640w">
+                      <div class="content_vertical align-left xshort">
+                        <p class="heading_s text_align-left">{{ item.title }}</p>
+                        <a href="{{ item.url }}" class="button_text w-button">Read More</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+{%- endfor -%}
+
+{% endcapture %}
+{% assign items_length = listItems | strip | size %}
+
+<div class="w-dyn-list" udy-collection="styling-tips">
+              {%- unless items_length == 0 -%}<div role="list" class="w-dyn-items">
+                {{ listItems }}
+              </div>{%- endunless -%}
+              {%- if items_length == 0 -%}<div class="w-dyn-empty">
+                <div>No items found.</div>
+              </div>{%- endif -%}
+            </div>

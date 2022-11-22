@@ -1,0 +1,65 @@
+
+      <div class="page_padding">
+        <div class="casabyjj_wrapper">
+          <div class="content_vertical">
+            <h3>{{ section.settings.casa_is_heading }}</h3>
+            <div class="container_3col">
+              {%- for block in section.blocks -%}{%- if block.type == "what_is_casa" -%}<div class="casabyjj_content" block.shopify_attributes>{%- if block.settings.casa_image == nil -%}<img src="https://uploads-ssl.webflow.com/633ad4e42c7da0c6cfbbb8ac/633c3bf6eed52eb0666b6c20_Icon-EmpoweringWomen.svg" loading="lazy" alt="" class="casabyjj_image">{%- else -%}<img src="{{ block.settings.casa_image.src | img_url: 'master' }}" loading="lazy" alt="{{ block.settings.casa_image.alt | escape }}" class="casabyjj_image" srcset="{{ block.settings.casa_image | img_url: '1920x' }} 1920w,{{ block.settings.casa_image | img_url: '1600x' }} 1600w,{{ block.settings.casa_image | img_url: '1366x' }} 1366w,{{ block.settings.casa_image | img_url: '1024x' }} 1024w,{{ block.settings.casa_image | img_url: '768x' }} 768w,{{ block.settings.casa_image | img_url: '640x' }} 640w">{%- endif -%}
+                <h4 class="heading_r">{{ block.settings.casa_heading }}</h4>
+                <p class="text_colour-red">{{ block.settings.casa_text }}</p>
+              </div>{%- endif -%}{%- endfor -%}
+            </div>
+            <a href="{{ pages["about"].url }}" class="button_line_blue w-button">{{ section.settings.button_text }}</a>
+          </div>
+        </div>
+      </div>
+    
+
+<script>var currentSection = document.currentScript.closest('.shopify-section');currentSection.setAttribute("class","section-casabyjj");</script>
+        
+{% schema %}
+{
+  "name": "Casa by JJ is",
+  "tag": "section",
+  "class": "section-casabyjj",
+  "settings": [
+    {
+      "type": "text",
+      "id": "casa_is_heading",
+      "label": "Casa is Heading",
+      "default": "Casa by JJ is..."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Learn About Casa"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "What is Casa",
+      "type": "what_is_casa",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "casa_heading",
+          "label": "Casa Heading",
+          "default": "EmpoweringWoman"
+        },
+        {
+          "type": "textarea",
+          "id": "casa_text",
+          "label": "Casa Text",
+          "default": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut"
+        },
+        {
+          "type": "image_picker",
+          "id": "casa_image",
+          "label": "Casa Image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

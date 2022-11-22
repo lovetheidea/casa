@@ -1,0 +1,335 @@
+{%- assign headerSnippetPath = 'header-index' -%}
+{%- assign wfPage = '636e30d70d7d5632836c3dc4' -%}
+{%- assign bodyClasses = '' -%}
+{%- render 'global-styles' -%}
+{%- render 'header' -%}
+{%- section 'navigation' -%}
+{%- render 'mobile-nav' -%}
+<div class="page_wrapper">
+  <section class="section_category_landing">
+    <div class="page_padding">
+      <div class="category_container">
+        <div class="container_section image">
+          <img class="frame-fullimage" src="{{ collection.featured_image | img_url: 'compact' }}" alt="{{image.alt }}" loading="lazy">
+        </div>
+        <div class="container_section">
+          <div class="w-embed">
+            <h1 class="margin_0">{{ collection.title }}</h1>
+          </div>
+          <div>{{ collection.description }}</div>
+          <a id="scrollback" href="#scrollback" option:text="Heading Button Text" option:url="Button Link" class="button_line_blue w-button">
+            See all Products
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section_product-list">
+    <div class="page_padding">
+      <div class="content_horizontal">
+        <div class="product-list_filters">
+          <form class="filter-form">
+            {%- for filter in collection.filters -%}
+              {%- for filter_value in filter.active_values -%}
+                {%- if filter.active_values.size > 0 -%}
+                  {% assign active_filters = true %}
+                {% endif %}
+              {%- endfor -%}
+            {%- endfor -%}
+            {% if active_filters %}
+              <div class="active_f_header">
+                <p class="heading_r" style="margin-bottom:0.5rem">Selected</p>
+                <a href="{{ collection.url }}?sort_by={{ collection.sort_by }}" class="active_f_clear">Clear</a>
+              </div>
+              <div class="active_f_wrap">
+                {%- for filter in collection.filters -%}
+                  {%- for filter_value in filter.active_values -%}
+                    {%- if filter.active_values.size > 0 -%}
+                      <div class="active_f">
+                        <a
+                          href="{{ filter_value.url_to_remove }}"
+                          data-action="clear-filters"
+                          class="f_item_clear"
+                          aria-label="delete"
+                        >
+                          {{- filter_value.label -}}
+                          <svg focusable="false" width="12" height="12" class="icon_close" viewBox="0 0 14 14">
+                            <path d="M13 13L1 1M13 1L1 13" stroke="currentColor" stroke-width="1.6" fill="none"></path>
+                          </svg>
+                        </a>
+                      </div>
+                    {% endif %}
+                  {%- endfor -%}
+                {%- endfor -%}
+              </div>
+              <br>
+            {% endif %}
+
+            {%- for filter in collection.filters -%}
+              <div class="f_group {% if filter.label == 'Colour' %}colour_group{% endif %}">
+                <div class="heading_r" style="margin-bottom: 8px;">
+                  {{ filter.label }}
+                  {%- if filter.active_values.size > 0 -%}({{ filter.active_values.size }}){%- endif -%}
+                </div>
+
+                {%- case filter.type -%}
+                  {%- when 'boolean', 'list' -%}
+                    {% unless filter.label == 'Colour' %}
+                      <ul class="f_item_list">
+                        {%- for filter_value in filter.values -%}
+                          <li class="filter-group-display__list-item">
+                            <label class="f_wrap" for="Filter-{{ filter.param_name }}-{{ forloop.index }}">
+                              <input
+                                class="filter-checkbox"
+                                type="checkbox"
+                                name="{{ filter_value.param_name }}"
+                                value="{{ filter_value.value }}"
+                                id="Filter-{{ filter.param_name }}-{{ forloop.index }}"
+                                {% if filter_value.active -%}
+                                  checked
+                                {%- endif %}
+                                {% if filter_value.count == 0 and filter_value.active == false -%}
+                                  disabled
+                                {%- endif %}
+                              >
+                              {{- filter_value.label -}}
+                            </label>
+                          </li>
+                        {%- endfor -%}
+                      </ul>
+
+                      <div class="filter-group-display__submit">
+                        <input class="button_text text_colour-red" style="  border: 0; margin-bottom: 1rem;cursor: pointer; font-size:1rem;" type="submit" value="Apply">
+                      </div>
+                    {% else %}
+                      {% comment %} Colour filters  {% endcomment %}
+                      <ul class="f_colour_list">
+                        {%- for filter_value in filter.values -%}
+                          <li>
+                            <label class="f_wrap colour_wrap" for="Filter-{{ filter.param_name }}-{{ forloop.index }}">
+                              <input class="filter-checkbox colour_checkbox"
+                                    type="checkbox"
+                                    name="{{ filter_value.param_name }}"
+                                    value="{{ filter_value.value }}"
+                                    id="Filter-{{ filter.param_name }}-{{ forloop.index }}"
+                                    style="background-color: {{ filter_value.label | downcase }};"
+                                    {% if filter_value.active -%}checked{%- endif %}
+                                    {% if filter_value.count == 0 and filter_value.active == false -%}disabled{%- endif %}>
+                              <span class="colour_tooltip">{{ filter_value.label }}</span>
+                            </label>
+                          </li>
+                        {%- endfor -%}
+                      </ul>
+                    {% endunless %}
+                  {%- when 'price_range' -%}
+                    <price-range class="price-range">
+                      {%- assign min_value = filter.min_value.value | default: 0.0 | divided_by: 100.0 -%}
+                      {%- assign max_value = filter.max_value.value | default: filter.range_max | divided_by: 100.0 -%}
+                      {%- assign range_max = filter.range_max | divided_by: 100.0 | ceil -%}
+                      {% assign lower_bound_progress = min_value | divided_by: range_max | times: 100.0 %}
+                      {% assign higher_bound_progress = max_value | divided_by: range_max | times: 100.0 %}
+
+                      <div class="price-range__input-group">
+                        <div class="price-range__input input-prefix">
+                          <span class="input-prefix__value">{{ cart.currency.symbol }}</span>
+                          <input aria-label="From price"
+                                class="input-prefix__field"
+                                type="number"
+                                inputmode="numeric"
+                                {% if filter.min_value.value %}value="{{ min_value | ceil }}"{% endif %}
+                                name="{{ filter.min_value.param_name }}"
+                                id="{{ filter.min_value.param_name }}"
+                                min="0"
+                                max="{{ max_value | ceil }}"
+                                placeholder="0">
+                        </div>
+                        <div class="price-range__input input-prefix">
+                          <span class="input-prefix__value">{{ cart.currency.symbol }}</span>
+                          <input aria-label="To price"
+                                class="input-prefix__field"
+                                type="number"
+                                inputmode="numeric"
+                                {% if filter.max_value.value %}value="{{ max_value | ceil }}"{% endif %}
+                                name="{{ filter.max_value.param_name }}"
+                                id="{{ filter.max_value.param_name }}"
+                                min="{{ min_value | ceil }}"
+                                max="{{ range_max | ceil }}"
+                                placeholder="{{ range_max | ceil }}">
+                        </div>
+                      </div>
+
+                      <div class="price-range__range-group range-group" style="--range-min: {{ lower_bound_progress }}%; --range-max: {{ higher_bound_progress }}%">
+                        <input type="range" aria-label="From price" class="range" min="0" max="{{ range_max | ceil }}" value="{{ min_value | ceil }}">
+                        <input type="range" aria-label="To price" class="range" min="0" max="{{ range_max | ceil }}" value="{{ max_value | ceil }}">
+                      </div>
+                    </price-range>
+
+                    <script>
+                      var PriceRange = class extends HTMLElement {
+                        connectedCallback() {
+                          this.rangeLowerBound = this.querySelector('.price-range__range-group input:first-child');
+                          this.rangeHigherBound = this.querySelector('.price-range__range-group input:last-child');
+                          this.textInputLowerBound = this.querySelector('.price-range__input:first-child input');
+                          this.textInputHigherBound = this.querySelector('.price-range__input:last-child input');
+                          this.textInputLowerBound.addEventListener('focus', () => this.textInputLowerBound.select());
+                          this.textInputHigherBound.addEventListener('focus', () => this.textInputHigherBound.select());
+                          this.textInputLowerBound.addEventListener('change', (event) => {
+                            event.target.value = Math.max(
+                              Math.min(
+                                parseInt(event.target.value),
+                                parseInt(this.textInputHigherBound.value || event.target.max) - 1
+                              ),
+                              event.target.min
+                            );
+                            this.rangeLowerBound.value = event.target.value;
+                            this.rangeLowerBound.parentElement.style.setProperty(
+                              '--range-min',
+                              `${(parseInt(this.rangeLowerBound.value) / parseInt(this.rangeLowerBound.max)) * 100}%`
+                            );
+                          });
+                          this.textInputHigherBound.addEventListener('change', (event) => {
+                            event.target.value = Math.min(
+                              Math.max(
+                                parseInt(event.target.value),
+                                parseInt(this.textInputLowerBound.value || event.target.min) + 1
+                              ),
+                              event.target.max
+                            );
+                            this.rangeHigherBound.value = event.target.value;
+                            this.rangeHigherBound.parentElement.style.setProperty(
+                              '--range-max',
+                              `${(parseInt(this.rangeHigherBound.value) / parseInt(this.rangeHigherBound.max)) * 100}%`
+                            );
+                          });
+                          this.rangeLowerBound.addEventListener('change', (event) => {
+                            this.textInputLowerBound.value = event.target.value;
+                            this.textInputLowerBound.dispatchEvent(new Event('change', { bubbles: true }));
+                          });
+                          this.rangeHigherBound.addEventListener('change', (event) => {
+                            this.textInputHigherBound.value = event.target.value;
+                            this.textInputHigherBound.dispatchEvent(new Event('change', { bubbles: true }));
+                          });
+                          this.rangeLowerBound.addEventListener('input', (event) => {
+                            triggerEvent(this, 'facet:abort-loading');
+                            event.target.value = Math.min(
+                              parseInt(event.target.value),
+                              parseInt(this.textInputHigherBound.value || event.target.max) - 1
+                            );
+                            event.target.parentElement.style.setProperty(
+                              '--range-min',
+                              `${(parseInt(event.target.value) / parseInt(event.target.max)) * 100}%`
+                            );
+                            this.textInputLowerBound.value = event.target.value;
+                          });
+                          this.rangeHigherBound.addEventListener('input', (event) => {
+                            triggerEvent(this, 'facet:abort-loading');
+                            event.target.value = Math.max(
+                              parseInt(event.target.value),
+                              parseInt(this.textInputLowerBound.value || event.target.min) + 1
+                            );
+                            event.target.parentElement.style.setProperty(
+                              '--range-max',
+                              `${(parseInt(event.target.value) / parseInt(event.target.max)) * 100}%`
+                            );
+                            this.textInputHigherBound.value = event.target.value;
+                          });
+                        }
+                      };
+                      window.customElements.define('price-range', PriceRange);
+                    </script>
+
+                    {% comment %}
+                       <div class="filter-group-display__price-range">
+                        <div class="filter-group-display__price-range-from">
+                          <span>{{ cart.currency.symbol }}</span>
+                          <input  style=" border-width: 1px;  border-color: #ffb8b3;box-shadow: none;border-radius: 0.25rem;"name="{{ filter.min_value.param_name }}" id="Filter-{{ filter.min_value.param_name }}"
+                            {% if filter.min_value.value -%}
+                            value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}" {%- endif %} type="number"
+                            placeholder="0" min="0" max="{{ filter.range_max | money_without_currency | replace: ',', '' }}">
+                        </div>
+
+                        <div class="filter-group-display__price-range-to">
+                          <span>{{ cart.currency.symbol }}</span>
+                          <input  style="border-width: 1px;  border-color: #ffb8b3;box-shadow: none;border-radius: 0.25rem; name="{{ filter.max_value.param_name }}" id="Filter-{{ filter.max_value.param_name }}"
+                            {% if filter.max_value.value -%}
+                            value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}" {%- endif %} type="number"
+                            placeholder="{{ filter.range_max | money_without_currency | replace: ',', '' }}" min="0"
+                            max="{{ filter.range_max | money_without_currency | replace: ',', '' }}">
+                        </div>
+                      </div>
+                      <div class="filter-group-display__submit">
+                        <input class="button_text text_colour-red" style="border: 0; margin-bottom: 1rem;cursor: pointer;" type="submit" value="Apply">
+                      </div>
+                    {% endcomment %}
+                {%- endcase -%}
+              </div>
+            {%- endfor -%}
+          </form>
+        </div>
+
+        <div class="product-list_products">
+          {%- render 'products_archive' -%}
+        </div>
+      </div>
+    </div>
+  </section>
+  {%- section 'casa-by-jj-is' -%}
+  <div class="divider"></div>
+  {%- section 'styling-tips' -%}
+  {%- section 'footer' -%}
+</div>
+<script
+  src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=633ad4e42c7da0c6cfbbb8ac"
+  type="text/javascript"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+<script src="{{ 'webflow.js' | asset_url }}" type="text/javascript"></script>
+<!--
+  [if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]
+-->
+<script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@latest/bundled/lenis.js"></script>
+<script>
+  const lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4xou
+    direction: 'vertical', // vertical, horizontal
+    gestureDirection: 'vertical', // vertical, horizontal, both
+    smooth: true,
+    smoothTouch: false,
+    touchMultiplier: 2,
+    infinite: false,
+  });
+  //get scroll value
+  lenis.on('scroll', ({ scroll, limit, velocity, direction, progress }) => {
+    console.log({ scroll, limit, velocity, direction, progress });
+  });
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+</script>
+<!-- CUSTOM QUANTITY BUTTONS -->
+<script>
+  const quantityGroupClass = 'quan-group';
+  const quantityIncrementButtonClass = 'quan-inc';
+  const quantityDecrementButtonClass = 'quan-dec';
+  const quantityNumberFieldClass = 'quan-num';
+  // Increment
+  $(document).on('click', `.${quantityIncrementButtonClass}`, function () {
+    var $input = $(this).closest(`.${quantityGroupClass}`).find(`.${quantityNumberFieldClass}`);
+    var val = parseInt($input.val(), 10);
+    $input.val(val + 1);
+    $input[0].dispatchEvent(new Event('change'));
+  });
+  // Decrement
+  $(document).on('click', `.${quantityDecrementButtonClass}`, function () {
+    var $input = $(this).closest(`.${quantityGroupClass}`).find(`.${quantityNumberFieldClass}`);
+    var val = parseInt($input.val(), 10);
+    $input.val(Math.max(val - 1, 1));
+    $input[0].dispatchEvent(new Event('change'));
+  });
+</script>
+
+{{ 'udesly-shopify.min.js' | asset_url | script_tag }}
