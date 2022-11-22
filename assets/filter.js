@@ -20,11 +20,14 @@
 
     console.log(updatedParams.toString())
     
-    // if(window.location.pathname == '/search') window.location.href = '/search?' + updatedParams.toString();
+    if(window.location.pathname == '/search'){
+      window.location.href = '/search?' + updatedParams.toString();
+      return;
+    } 
 
-    // window.location.pathname.includes('/collections') && updatedParams.toString() != '' 
-    // ? window.location.href = window.location.pathname + '?' + updatedParams.toString()
-    // : window.location.href = window.location.pathname
+    window.location.pathname.includes('/collections') && updatedParams.toString() != '' 
+    ? window.location.href = window.location.pathname + '?' + updatedParams.toString()
+    : window.location.href = window.location.pathname
   }
 
   function getUpdatedParams (currentParams, newParams) {
