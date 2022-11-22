@@ -17,8 +17,6 @@
 
     const currentParams = new URLSearchParams(window.location.search);
     const updatedParams = getUpdatedParams(currentParams, searchParams);
-
-    console.log(updatedParams.toString())
     
     if(window.location.pathname == '/search'){
       window.location.href = '/search?' + updatedParams.toString();
