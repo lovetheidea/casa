@@ -6,7 +6,7 @@
   if(window.location.pathname == '/search' || window.location.pathname.includes('/collections')){
     document.querySelector(selectors.form).addEventListener('click', (e) => {
       if(e.target.classList.contains('filter-checkbox') || e.target.classList.contains('f_wrap')){
-        submitSearchForm();
+        // submitSearchForm();
       }
     })
   }
