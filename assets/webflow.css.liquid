@@ -129,7 +129,7 @@ html[data-w-dynpage] [data-w-cloak] {
   border-radius: 0;
   background: none;
   background-image: none;
-  background-position: 0% 0%;
+  background-position: 0 0;
   background-size: auto auto;
   background-repeat: repeat;
   background-origin: padding-box;
@@ -186,7 +186,7 @@ html[data-w-dynpage] [data-w-cloak] {
   height: auto !important;
   overflow: visible !important;
   white-space: nowrap;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0px 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1);
   cursor: pointer;
 }
 .w-webflow-badge > img {
@@ -239,15 +239,14 @@ p {
   margin-bottom: 10px;
 }
 blockquote {
-  margin: 0 0 10px 0;
+  margin: 0 0 10px;
   padding: 10px 20px;
   border-left: 5px solid #E2E2E2;
   font-size: 18px;
   line-height: 22px;
 }
 figure {
-  margin: 0;
-  margin-bottom: 10px;
+  margin: 0 0 10px;
 }
 figcaption {
   margin-top: 5px;
@@ -255,7 +254,7 @@ figcaption {
 }
 ul,
 ol {
-  margin-top: 0px;
+  margin-top: 0;
   margin-bottom: 10px;
   padding-left: 40px;
 }
@@ -388,7 +387,7 @@ textarea.w-select {
   display: inline-block;
   cursor: pointer;
   font-weight: normal;
-  margin-bottom: 0px;
+  margin-bottom: 0;
 }
 .w-radio {
   display: block;
@@ -408,11 +407,9 @@ textarea.w-select {
   clear: both;
 }
 .w-radio-input {
-  margin: 4px 0 0;
-  margin-top: 1px \9;
+  margin: 1px \9 0 0;
   line-height: normal;
   float: left;
-  margin-left: -20px;
 }
 .w-radio-input {
   margin-top: 3px;
@@ -1015,7 +1012,7 @@ textarea.w-select {
 }
 .w-slider-dot:focus {
   outline: none;
-  box-shadow: 0px 0px 0px 2px #fff;
+  box-shadow: 0 0 0 2px #fff;
 }
 .w-slider-dot:focus.w-active {
   box-shadow: none;
@@ -1119,8 +1116,7 @@ textarea.w-select {
   top: 0;
   right: 0;
   bottom: 0;
-  margin: auto;
-  margin-right: 20px;
+  margin: auto 20px auto auto;
   width: 1em;
   height: 1em;
 }
@@ -1433,7 +1429,7 @@ textarea.w-select {
 .w-lightbox-noscroll {
   overflow: hidden;
 }
-@media (min-width: 768px) {
+@media(min-width: 768px) {
   .w-lightbox-content {
     height: 96vh;
     margin-top: 2vh;
@@ -1515,7 +1511,7 @@ textarea.w-select {
   max-width: 60%;
 }
 .w-richtext figure > div:before {
-  cursor: default!important;
+  cursor: default !important;
 }
 .w-richtext figure img {
   width: 100%;
@@ -1525,7 +1521,7 @@ textarea.w-select {
 }
 .w-richtext figure div {
   /* fix incorrectly sized selection border in the data manager */
-  font-size: 0px;
+  font-size: 0;
   color: transparent;
 }
 .w-richtext figure.w-richtext-figure-type-image,
@@ -1836,210 +1832,215 @@ textarea.w-select {
 /* ========================================= */
 /* == custom style for filtering products == */
 
-  .f_group {
-    margin-bottom: 24px;
-  }
-  ul.f_item_list {
-    list-style: none;
-    padding: 0;
-  }
-  ul.f_colour_list {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-  label.colour_wrap {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 8px 6px;
-  }
-  .colour_tooltip {
-    position: absolute;
-    top: -28px;
-    background: #ffffff;
-    border: 1px solid #ffd1ce;
-    box-shadow: 0px 1px 6px -1px rgb(116, 121, 125);
-    color: #1d5476;
-    font-size: 14px;
-    font-weight: 500;
-    padding: 1px 6px;
-    border-radius: 4px;
-    display: none;
-  }
-  label.colour_wrap:hover .colour_tooltip {
-    display: block;
-  }
-  .active_f_header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .active_f_clear {
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-    font-size: 1.2rem;
-  }
-  .active_f_wrap {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 4px;
-  }
-  .active_f {
-    background: #ffe7e5;
-    max-width: fit-content;
-    padding: 4px 10px;
-    border-radius: 18px;
-  }
-  a.f_item_clear {
-    font-size: 1rem;
-    font-weight: 700;
-    text-transform: capitalize;
-    text-decoration: none !important;
-  }
-  .icon_close {
-    margin: 0 4px -2px 14px;
-  }
+.f_group {
+  margin-bottom: 54px;
+}
+ul.f_item_list {
+  list-style: none;
+  padding: 0;
+}
+ul.f_colour_list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.f_group li label,
+.f_group li label input {
+  cursor: pointer;
+}
+label.colour_wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 8px 6px;
+}
+.colour_tooltip {
+  position: absolute;
+  top: -28px;
+  background: #ffffff;
+  border: 1px solid #ffd1ce;
+  box-shadow: 0 1px 6px -1px rgb(116, 121, 125);
+  color: #1d5476;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 1px 6px;
+  border-radius: 4px;
+  display: none;
+}
+label.colour_wrap:hover .colour_tooltip {
+  display: block;
+}
+.active_f_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.active_f_clear {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+.active_f_wrap {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.active_f {
+  background: #ffe7e5;
+  max-width: fit-content;
+  padding: 4px 10px;
+  border-radius: 18px;
+}
+a.f_item_clear {
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: capitalize;
+  text-decoration: none !important;
+}
+.icon_close {
+  margin: 0 4px -2px 14px;
+}
 
-  .f_wrap input.filter-checkbox {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    background-color: #ffb8b2;
-    margin: 0px 0.6rem -3px 0px;
-  }
-  input.filter-checkbox:checked {
-    background-color: #1d5476;
-  }
-  .f_wrap input.colour_checkbox {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    margin: 0;
-    padding: 18px;
-    border-radius: 50%;
-  }
-  .colour_wrap > input {
-    border: 3px solid transparent;
-    outline: 2px solid transparent;
-  }
-  .colour_wrap > input:checked {
-    border: 3px solid #ffffff;
-    outline: 2px solid #1d5476;
-  }
+.f_wrap input.filter-checkbox {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #ffb8b2;
+  margin: 0 0.6rem -3px 0;
+}
+input.filter-checkbox:checked {
+  background-color: #1d5476;
+}
+.f_wrap input.colour_checkbox {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+  padding: 18px;
+  border-radius: 50%;
+}
+.colour_wrap > input {
+  border: 3px solid transparent;
+  outline: 2px solid transparent;
+}
+.colour_wrap > input:checked {
+  border: 3px solid #ffffff;
+  outline: 2px solid #1d5476;
+}
+.price-range {
+  display: block;
+  padding-top: 5px;
+}
+.price-range__input-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.price-range__input {
+  position: relative;
+  flex: 1 0 0;
+  min-width: 0; /* Required for Firefox */
+}
+.price-range__delimiter {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.price-range__range-group {
+  position: relative;
+}
+.no-js .price-range__range-group {
+  display: none !important; /* When JS is disabled we only rely on the input field */
+}
+@media not screen and (pointer: fine) {
+  /* On non-touch device the thumb are bigger so we need to adjust the spacing */
   .price-range {
-    display: block;
-    padding-top: 5px;
-  }
-  .price-range__input-group {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  .price-range__input {
-    position: relative;
-    flex: 1 0 0;
-    min-width: 0; /* Required for Firefox */
-  }
-  .price-range__delimiter {
-    margin-left: 20px;
-    margin-right: 20px;
+    padding-top: 7px;
   }
   .price-range__range-group {
-    position: relative;
+    margin-bottom: 18px;
   }
-  .no-js .price-range__range-group {
-    display: none !important; /* When JS is disabled we only rely on the input field */
-  }
-  @media not screen and (pointer: fine) {
-    /* On non-touch device the thumb are bigger so we need to adjust the spacing */
-    .price-range {
-      padding-top: 7px;
-    }
-    .price-range__range-group {
-      margin-bottom: 18px;
-    }
-  }
+}
 
-  .price-range__range-group {
-    position: relative;
-  }
-  .no-js .collapsible, .collapsible[open] {
-    height: auto;
-    overflow: visible;
-    visibility: visible;
-  }
-  .range {
-    -webkit-appearance: none;
-    appearance: none; /* Hides the slider so that custom slider can be made */
-    width: 100%; /* Specific width is required for Firefox. */
-    background: transparent; /* Otherwise white in Chrome */
-  }
-  input[type=range]:focus {
-    outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
-  }
-  .range::-webkit-slider-thumb {
-    -webkit-appearance: none;
-  }
-  .range::-ms-thumb {
-    position: relative;
-    cursor: pointer;
-    height: 26px;
-    width: 26px;
-    border-radius: 16px;
-    border: 2px solid #1D5476;
-    background: #ffb8b2;
-    margin-top: -10px;
-    z-index: 1;
-  }
-  /* Chrome and Safari */
-  .range::-webkit-slider-thumb {
-    position: relative;
-    cursor: pointer;
-    height: 26px;
-    width: 26px;
-    border-radius: 16px;
-    border: 2px solid #1D5476;
-    background: #ffb8b2;
-    margin-top: -10px;
-    z-index: 1;
-  }
-  .range::-webkit-slider-runnable-track {
-    width: 100%;
-    height: 6px;
-    cursor: pointer;
-    background: #ffb8b2;
-    border-radius: 4px;
-    border: none;
-  }
-  /* Firefox */
-  .range::-moz-range-thumb {
-    height: 20px;
-    width: 20px;
-    border-radius: 100%;
-    border: none;
-    background: #ffb8b2;
-    cursor: pointer;
-    box-shadow: 0 0 0 5px #ffb8b2 inset;
-  }
-  .range::-moz-range-progress,
-  .range::-moz-range-track {
-    width: 100%;
-    height: 6px;
-    cursor: pointer;
-    border-radius: 4px;
-    border: none;
-  }
-  .range::-moz-range-progress {
-    background-color: rgb((49, 49, 49), 0.7);
-  }
-  .range::-moz-range-track {
-    background-color: rgb((49, 49, 49));
-  }
+.price-range__range-group {
+  position: relative;
+}
+.no-js .collapsible,
+.collapsible[open] {
+  height: auto;
+  overflow: visible;
+  visibility: visible;
+}
+.range {
+  -webkit-appearance: none;
+  appearance: none; /* Hides the slider so that custom slider can be made */
+  width: 100%; /* Specific width is required for Firefox. */
+  background: transparent; /* Otherwise white in Chrome */
+}
+input[type=range]:focus {
+  outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+}
+.range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+.range::-ms-thumb {
+  position: relative;
+  cursor: pointer;
+  height: 26px;
+  width: 26px;
+  border-radius: 16px;
+  border: 2px solid #1D5476;
+  background: #ffb8b2;
+  margin-top: -10px;
+  z-index: 1;
+}
+/* Chrome and Safari */
+.range::-webkit-slider-thumb {
+  position: relative;
+  cursor: pointer;
+  height: 26px;
+  width: 26px;
+  border-radius: 16px;
+  border: 2px solid #1D5476;
+  background: #ffb8b2;
+  margin-top: -10px;
+  z-index: 1;
+}
+.range::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  background: #ffb8b2;
+  border-radius: 4px;
+  border: none;
+}
+/* Firefox */
+.range::-moz-range-thumb {
+  height: 20px;
+  width: 20px;
+  border-radius: 100%;
+  border: none;
+  background: #ffb8b2;
+  cursor: pointer;
+  box-shadow: 0 0 0 5px #ffb8b2 inset;
+}
+.range::-moz-range-progress,
+.range::-moz-range-track {
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  border-radius: 4px;
+  border: none;
+}
+.range::-moz-range-progress {
+  background-color: rgb((49, 49, 49), 0.7);
+}
+.range::-moz-range-track {
+  background-color: rgb((49, 49, 49));
+}
 /* On non-hover devices, we make the thumb bigger */
 @media not screen and (pointer: fine) {
   .range::-webkit-slider-thumb {
@@ -2056,53 +2057,53 @@ textarea.w-select {
 }
 
 /* Range group (when using double range, we need to rely on some clever trick) */
-  .range-group {
-    height: 4px;
-    background: linear-gradient(to right,rgb(203 203 203) var(--range-min),rgb(255 184 179) var(--range-min),rgb(255 184 179) var(--range-max),rgb(203 203 203) var(--range-max));
-    border-radius: 4px;
-  }
-  .range-group .range {
-    pointer-events: none;
-    height: 4px;
-    vertical-align: top;
-  }
-  .range-group .range:last-child {
-    left: 0;
-  }
-  .range-group .range:last-child {
-    position: absolute;
-    top: 0;
-  }
-  .range-group .range::-webkit-slider-runnable-track {
-    background: none;
-  }
-  .range-group .range::-webkit-slider-thumb {
-    pointer-events: auto;
-  }
-  .range-group .range:last-child {
-    position: absolute;
-    top: 0;
-  }
-  .input-prefix:first-child {
-    margin-right: 8px;
-  }
-  span.input-prefix__value {
-    position: absolute;
-    font-size: 16px;
-    left: 6px;
-    bottom: 4px;
-  }
-  .input-prefix {
-    padding: 2px 10px;
-    background: #ffe7e5;
-  }
-  .input-prefix__field {
-    margin: 0 6px;
-    background: transparent;
-    -webkit-appearance: none;
-    appearance: none;
-    -moz-appearance: textfield;
-    min-width: 0;
-    width: 100%;
-    border: none;
-  }
+.range-group {
+  height: 4px;
+  background: linear-gradient(to right,rgb(203 203 203) var(--range-min),rgb(255 184 179) var(--range-min),rgb(255 184 179) var(--range-max),rgb(203 203 203) var(--range-max));
+  border-radius: 4px;
+}
+.range-group .range {
+  pointer-events: none;
+  height: 4px;
+  vertical-align: top;
+}
+.range-group .range:last-child {
+  left: 0;
+}
+.range-group .range:last-child {
+  position: absolute;
+  top: 0;
+}
+.range-group .range::-webkit-slider-runnable-track {
+  background: none;
+}
+.range-group .range::-webkit-slider-thumb {
+  pointer-events: auto;
+}
+.range-group .range:last-child {
+  position: absolute;
+  top: 0;
+}
+.input-prefix:first-child {
+  margin-right: 8px;
+}
+span.input-prefix__value {
+  position: absolute;
+  font-size: 16px;
+  left: 6px;
+  bottom: 4px;
+}
+.input-prefix {
+  padding: 2px 10px;
+  background: #ffe7e5;
+}
+.input-prefix__field {
+  margin: 0 6px;
+  background: transparent;
+  -webkit-appearance: none;
+  appearance: none;
+  -moz-appearance: textfield;
+  min-width: 0;
+  width: 100%;
+  border: none;
+}

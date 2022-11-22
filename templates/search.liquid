@@ -91,13 +91,13 @@
                             <input class="filter-checkbox" type="checkbox" name="{{ filter_value.param_name }}" value="{{ filter_value.value }}"
                               id="Filter-{{ filter.param_name }}-{{ forloop.index }}" {% if filter_value.active -%}checked{%- endif %}
                               {% if filter_value.count == 0 and filter_value.active == false -%}disabled{%- endif %}>{{ filter_value.label }}</label>
-                        </li>
+                          </li>
                       {%- endfor -%}
                     </ul>
 
-                    <div class="filter-group-display__submit">
-                      <input class="button_text text_colour-red" style="  border: 0; margin-bottom: 1rem;cursor: pointer; font-size:1rem;" type="submit" value="Apply">
-                    </div>
+                    {%- comment -%} <div class="filter-group-display__submit">
+                      <input class="button_text text_colour-red" style="border: 0; margin-bottom: 1rem;cursor: pointer; font-size:1rem;" type="button" value="Apply">
+                    </div> {%- endcomment -%}
                   {% else %}
                     {% comment %} Colour filters {% endcomment %}
                     <ul class="f_colour_list">
