@@ -44,7 +44,10 @@
   <div class="page_padding">
     <h1>{{ 't7e85e19e' | t }}</h1>
     <div class="content_horizontal">
-      <div class="product-list_filters">
+      <div class="product-list_filters filter-form-mobile">
+        <button class="close-mobile-filter">
+          {%- render 'close-icon' -%}
+        </button>
         <form class="filter-form">
           {%- for filter in search.filters -%}
             {%- for filter_value in filter.active_values -%}
@@ -56,6 +59,7 @@
           {% if active_filters %}
             <div class="active_f_header">
               <p class="heading_r" style="margin-bottom:0.5rem">Selected</p>
+              <a class="active_f_clear" href="search?q={{ search.terms | handleize }}">Clear</a>
             </div>
             <div class="active_f_wrap">
               {%- for filter in search.filters -%}
@@ -193,6 +197,10 @@
       </div>
 
       <div class="product-list_products">
+        <button class="filter-form-mobile--trigger">
+          {%- render 'icon-filter-2' -%}
+          <span>Filters</span>
+        </button>
         <div class="container_3col margin_30">
           {% comment %} {%- for product in search.results -%}
             {%- render 'products_archive', product: item -%}

@@ -28,7 +28,10 @@
   <section class="section_product-list">
     <div class="page_padding">
       <div class="content_horizontal">
-        <div class="product-list_filters">
+        <div class="product-list_filters filter-form-mobile">
+          <button class="close-mobile-filter">
+            {%- render 'close-icon' -%}
+          </button>
           <form class="filter-form">
             {%- for filter in collection.filters -%}
               {%- for filter_value in filter.active_values -%}
@@ -40,7 +43,7 @@
             {% if active_filters %}
               <div class="active_f_header">
                 <p class="heading_r" style="margin-bottom:0.5rem">Selected</p>
-                <a href="{{ collection.url }}?sort_by={{ collection.sort_by }}" class="active_f_clear">Clear</a>
+                <a href="{{ collection.url }}" class="active_f_clear">Clear</a>
               </div>
               <div class="active_f_wrap">
                 {%- for filter in collection.filters -%}
@@ -269,6 +272,10 @@
         </div>
 
         <div class="product-list_products">
+          <button class="filter-form-mobile--trigger">
+            {%- render 'icon-filter-2' -%}
+            <span>Filters</span>
+          </button>
           {%- render 'products_archive' -%}
         </div>
       </div>

@@ -1,6 +1,12 @@
 (function(){
   var selectors = {
-    form: '.filter-form'
+    form: '.filter-form',
+    mobileFilter: '.filter-form-mobile',
+    mobileFilterTrigger: '.filter-form-mobile--trigger',
+    clearMobileFilterTrigger: '.active_f_clear',
+
+    openMobileFilter: 'is-open-filter',
+    closeMobileFilter: '.close-mobile-filter'
   };
 
   if(window.location.pathname == '/search' || window.location.pathname.includes('/collections')){
@@ -9,6 +15,12 @@
         submitSearchForm();
       }
     })
+
+    if(window,innerWidth < 767){
+      document.querySelector(selectors.mobileFilterTrigger).addEventListener('click', openMobileFilter);
+      document.querySelector(selectors.closeMobileFilter).addEventListener('click', closeMobileFilter);
+    }
+
   }
 
   function submitSearchForm(){
@@ -48,6 +60,14 @@
     }
 
     return clone;
+  }
+
+  function openMobileFilter (){
+    document.querySelector(selectors.mobileFilter).classList.add(selectors.openMobileFilter);
+  }
+
+  function closeMobileFilter (){
+    document.querySelector(selectors.mobileFilter).classList.remove(selectors.openMobileFilter);
   }
 }
 )();
