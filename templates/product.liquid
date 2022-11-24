@@ -53,8 +53,8 @@
            
             <div class="content_horizontal">
             <div class="product_colour-dot active" style="background: {{ product.metafields.custom.colour.value }}"></div>
-            {%- if product.metafields.custom.custom.related_products != blank -%}
-              {% assign recommended_products =  product.metafields.custom.custom.related_products.value %}
+            {%- if product.metafields.custom.related_products != blank -%}
+              {% assign recommended_products =  product.metafields.custom.related_products.value %}
               {% for product in recommended_products  %}
                 <a class="product_colour-dot" href="{{ product.url }}" style="background: {{ product.metafields.custom.colour.value }}"></a>
               {%- endfor -%}
