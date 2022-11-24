@@ -55,7 +55,7 @@
             <div class="content_horizontal">
             {% assign recommended_products =  product.metafields.custom.linked_colour_products.rec_products.value %}
             {% for field in recommended_products  %}
-              <div class="product_colour-dot" style="background: {{ field.metafields.custom.colour"></div>
+              <div class="product_colour-dot" style="background: {{ field.metafields.custom.colour }}"></div>
               {%- endfor -%}
             </div>
             {%- endif -%}
