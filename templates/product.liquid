@@ -50,10 +50,18 @@
               </div>
               <h1 class="heading_l line-height_0 margin_16">{{ product.title }}</h1>
             </div>
-            <div class="content_horizontal hide">
+            <div class="content_horizontal">
+            {%- if product.metafields.custom.linked_colour_products != blank -%}
+              <div class="product_colour-dot">
+                {%- for field in product.metafields.custom.linked_colour_products -%}
+                  <p>{{ field | first }}: {{ field | last }}</p>
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
+            
+              <!--<div class="product_colour-dot"></div>
               <div class="product_colour-dot"></div>
-              <div class="product_colour-dot"></div>
-              <div class="product_colour-dot"></div>
+              <div class="product_colour-dot"></div>-->
             </div>
             <div data-current="inspiration" data-easing="ease" data-duration-in="500" data-duration-out="100" class="tabs_wrapper w-tabs">
               <div class="tabs_menu w-tab-menu">
