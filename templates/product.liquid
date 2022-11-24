@@ -50,15 +50,17 @@
               </div>
               <h1 class="heading_l line-height_0 margin_16">{{ product.title }}</h1>
             </div>
-            
-            {%- if product.metafields.custom.linked_colour_products != blank -%}
+           
             <div class="content_horizontal">
-            {% assign recommended_products =  product.metafields.custom.linked_colour_products.value %}
-            {% for product in recommended_products  %}
-              <div class="product_colour-dot" style="background: {{ product.metafields.custom.colour.value }}"></div>
+            <div class="product_colour-dot active" style="background: {{ product.metafields.custom.colour.value }}"></div>
+            {%- if product.metafields.custom.custom.related_products != blank -%}
+              {% assign recommended_products =  product.metafields.custom.custom.related_products.value %}
+              {% for product in recommended_products  %}
+                <a class="product_colour-dot" href="{{ product.url }}" style="background: {{ product.metafields.custom.colour.value }}"></a>
               {%- endfor -%}
+           {%- endif -%}
             </div>
-            {%- endif -%}
+            
             
             <div data-current="inspiration" data-easing="ease" data-duration-in="500" data-duration-out="100" class="tabs_wrapper w-tabs">
               <div class="tabs_menu w-tab-menu">
