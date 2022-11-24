@@ -6,7 +6,8 @@
           <img
             loading="lazy"
             where="src"
-            src="https://cdn.shopify.com/s/files/1/0675/6358/5823/products/IMG3_3a768aa4-b479-4d6a-a929-15c486dc3629.jpg?v=1667925185"
+            src="{{ item.images.last | img_url: 'master' }}"
+            data-placeholder="https://cdn.shopify.com/s/files/1/0675/6358/5823/products/IMG3_3a768aa4-b479-4d6a-a929-15c486dc3629.jpg?v=1667925185"
             alt="{{ item.featured_image.alt }}"
             alt=""
             class="hover"
