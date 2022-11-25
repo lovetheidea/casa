@@ -51,7 +51,7 @@
               <h1 class="heading_l line-height_0 margin_16">{{ product.title }}</h1>
             </div>
            
-            <div class="content_horizontal">
+            <div class="content_horizontal skinny">
             <div class="product_colour-dot active" style="background: {{ product.metafields.custom.colour.value }}"></div>
             {%- if product.metafields.custom.related_products != blank -%}
               {% assign recommended_products =  product.metafields.custom.related_products.value %}
